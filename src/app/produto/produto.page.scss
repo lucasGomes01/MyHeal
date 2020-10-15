@@ -1,0 +1,74 @@
+ion-icon {
+  font-size: 32px;
+  margin-right: 20px;
+}
+
+ion-slides {
+  height:40%;
+}
+
+ion-row ion-col{
+--ion-grid-width:10px;
+}
+
+.swiper-slide {
+  display: block;
+}
+
+.swiper-slide h2 {
+  margin-top: 2.8rem;
+}
+
+.swiper-slide img {
+  max-height: 60%;
+  max-width: 60%;
+  margin-top:5px;
+  pointer-events: none;
+}
+
+.retanguloPreco{
+  width: 8em;
+  height: 45px;
+  margin: 0;
+  margin-top: 5px;
+  margin-left: 5px;
+  position: relative;
+  box-shadow: 5px 5px 5px   rgb(158, 158, 158);
+-webkit-box-shadow: 0px 0px 1em  rgb(158, 158, 158);
+}
+
+div.container5 {
+  height: 3em;
+  display: flex;
+  align-items: center }
+
+div.container5 p {
+  margin: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ion-button{
+  width: 8em;
+  height: 45px;
+  margin: 0;
+  margin-top: 5px;
+  margin-left: 5px;
+  position: relative;
+  box-shadow: 5px 5px 5px   rgb(158, 158, 158);
+-webkit-box-shadow: 0px 0px 1em  rgb(158, 158, 158);
+}
+.preco{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.holder {
+  display: flex;
+  justify-content: center;
+}
+
+#linha-horizontal {
+  width: 300px;
+  border: 1px solid rgb(155, 155, 155);
+}
