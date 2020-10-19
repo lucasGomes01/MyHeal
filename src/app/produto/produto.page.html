@@ -10,85 +10,82 @@
         </ion-col> 
         <ion-col size="1" class="ion-align-self-center">
           <div class="name-cart">
-            <img src="../../assets/imagens/carrinho.jpg" > 
+            <img src="../../assets/img/carrinho.jpg" > 
           </div> 
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-toolbar>
-  <style>
-    :root {
-      --ion-safe-area-top: 20px;
-      --ion-safe-area-bottom: 22px;
-    }
-  </style>
 </ion-header>
 
 
 <ion-content>
-  <ion-card>
-  <ion-slides pager="true">
-    <ion-slide>
-      <div class="slide">
-        <img src="../../assets/imagens/1.jpg" > 
-      </div>
-    </ion-slide>
 
-    <ion-slide>
-      <div class="slide">
-        <img src="../../assets/imagens/1.jpg" > 
-      </div>
-    </ion-slide>
+  <li *ngFor="let item of produto" >
 
-    <ion-slide>
-      <div class="slide">
-        <img src="../../assets/imagens/1.jpg" > 
-      </div>
-    </ion-slide>
-
-    <ion-slide>
-      <div class="slide">
-        <img src="../../assets/imagens/1.jpg" > 
-      </div>
-    </ion-slide>
-  </ion-slides>
- 
-    <ion-card-header>
-      <ion-card-title>Band-aid</ion-card-title>
-    </ion-card-header>
-    
-    <div class="holder">
-
-      <div class="retanguloPreco">
-          <div class="container5">
-            <p>R$ 15,00</p>
+    <ion-card>
+      <ion-slides pager="true">
+        <ion-slide>
+          <div class="slide">
+            <img src="../../assets/img/{{item.img1}}" > 
           </div>
-      </div>
+        </ion-slide>
+
+        <ion-slide>
+          <div class="slide">
+            <img src="../../assets/img/{{item.img2}}" > 
+          </div>
+        </ion-slide>
+
+        <ion-slide>
+          <div class="slide">
+            <img src="../../assets/img/{{item.img3}}" > 
+          </div>
+        </ion-slide>
+
+        <ion-slide>
+          <div class="slide">
+            <img src="../../assets/img/{{item.img4}}" > 
+          </div>
+        </ion-slide>
+      </ion-slides>
   
-      <div>
-        <ion-button color="secondary">Carrinho</ion-button>
+      <ion-card-header>
+        <ion-card-title>{{item.titulo}}</ion-card-title>
+      </ion-card-header>
+      
+      <div class="holder">
+
+        <div class="retanguloPreco">
+            <div class="container5">
+              <p>{{item.preco}}</p>
+            </div>
+        </div>
+    
+        <div>
+          <ion-button color="secondary">Carrinho</ion-button>
+        </div>
+
+        <!--
+          <ion-item  color="secondary">
+            <ion-label>Carrinho</ion-label>
+            <ion-select  interface="action-sheet">
+              <ion-select-option value="1">1</ion-select-option>
+              <ion-select-option value="2">2</ion-select-option>
+              
+              <ion-select-option value="3">3</ion-select-option>
+              <ion-select-option value="4">4</ion-select-option>
+            </ion-select>
+          </ion-item>
+        -->
       </div>
 
-      <!--
-        <ion-item  color="secondary">
-          <ion-label>Carrinho</ion-label>
-          <ion-select  interface="action-sheet">
-            <ion-select-option value="1">1</ion-select-option>
-            <ion-select-option value="2">2</ion-select-option>
-            <ion-select-option value="3">3</ion-select-option>
-            <ion-select-option value="4">4</ion-select-option>
-          </ion-select>
-        </ion-item>
-          -->
-      </div>
+      <ion-card-content>
 
-    <ion-card-content>
-
-      <div id="linha-horizontal"></div>
-
-      Keep close to Nature's heart... and break clear away, once in awhile,
-      and climb a mountain or spend a week in the woods. Wash your spirit clean.
-    </ion-card-content>
-  </ion-card>
-  
+        <div id="linha-horizontal"></div>
+        <p align="justify">{{item.descricao}}</p>
+        
+      </ion-card-content>
+    </ion-card>
+  </li>
 </ion-content>

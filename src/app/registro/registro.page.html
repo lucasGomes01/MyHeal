@@ -92,7 +92,6 @@
   <ion-item lines="none">
     <ion-label position="stacked">Confirmar</ion-label>
     <ion-input formControlName="confirmaSenha" type="password" placeholder="Confirme sua senha"></ion-input>
-
     <ng-container *ngFor="let erro of mensagens_validacao.confirmaSenha">
       <span class="msg-erro" 
       *ngIf="formRegistro.get('confirmaSenha').hasError(erro.tipo) && (formRegistro.get('confirmaSenha').dirty || formRegistro.get('confirmaSenha').touched)">

@@ -1,37 +1,64 @@
-ion-menu-button {
-  color: var(--ion-color-primary);
-}
-
-#container {
-  text-align: center;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-  color: #8c8c8c;
-  margin: 0;
-}
-
-#container a {
-  text-decoration: none;
-}
-
-ion-icon {
-  font-size: 16px;
-}
-
-ion-row {
-  margin: 0;
-  top:25px;
-}
+.foto_produtos{
+  background-color: rgb(255, 255, 255);
+  clear: both;
+  margin-top: 0;
+  }  
+   
+  img {
+  vertical-align: top
+   
+  }
+   
+  ion-col{
+  padding-left: 0;
+  }
+  
+  article ul{
+    font-size: 0; /* elimina espaços entre as li */
+    background-color: #fff; /* fundo branco na ul, se for preciso */
+    height: 100%;
+  
+  }
+  
+  article ul li ion-card img{
+    width: 100%; /* ajusta a largura da imagem dentro da li */
+    display: block; /* convertendo para block elimina espaço natural abaixo da imagem */
+  }
+  
+  article ul li ion-card a{
+    background-color: var(--ion-color-secondary);
+    color: black;
+    border-radius: 4px;
+    height: 15px;
+    width: 20px;
+  
+    text-decoration: none;
+  }
+  
+  article ul li ion-card ion-card-header{
+    padding-bottom: 2px;
+  }
+  
+  article ul, article ul li ion-card{ /* remove espaços e o bullet da ul e das li */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    color: black;
+  }
+  
+  article ul li{
+    display: inline-block;
+    width: 50%; /* divide a largura por 4 */
+    box-sizing: border-box; /* restringe o padding à área da li */
+    text-align: center; /* centraliza o conteúdo */
+    padding: 15px; /* espaçamento interno entre o conteúdo e a borda da li */
+    font-size: 16px; /* ajusta o tamanho da fonte nas li com o tamanho padrão */
+    vertical-align: top; /* alinha as li no topo da linha */
+  }
+  
+  @media (min-width:700px){
+    article ul li{
+      width: 25%;
+    }
+  }

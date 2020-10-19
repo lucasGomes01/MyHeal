@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ComparacaoValidator } from '../validators/comparacao-validator';
-import { CpfValidator } from '../validators/cpf-validator';
+//import { ComparacaoValidator } from '../validators/comparacao-validator';
+//import { CpfValidator } from '../validators/cpf-validator';
 
 @Component({
   selector: 'app-registro',
@@ -63,7 +63,7 @@ export class RegistroPage {
         Validators.required,
         Validators.minLength(11),
         Validators.maxLength(14),
-        CpfValidator.cpfValido
+//        CpfValidator.cpfValido
       ])],
       dataNascimento: ['', Validators.compose([Validators.required])],
       genero: ['', Validators.compose([Validators.required])],
@@ -73,7 +73,7 @@ export class RegistroPage {
       confirmaSenha: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
 
     }, {
-      validator: ComparacaoValidator('senha', 'confirmaSenha')
+//      validator: ComparacaoValidator('senha', 'confirmaSenha')
     });
   }
 
