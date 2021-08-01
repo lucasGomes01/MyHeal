@@ -1,0 +1,146 @@
+*{
+  font-family: 'Rubik', sans-serif;
+}
+
+ion-menu-button {
+  color: white;
+}
+
+.name-cart{
+  min-width: 25px;
+  max-width: 30px;
+  float: right;
+}
+
+
+#body{
+  height: 100%;
+  background-color: var(--ion-color-secondary);
+}
+
+#body .barra-pesquisa{
+  display: flex;
+  padding-top: 5px;
+  justify-content: center;
+}
+
+#body .barra-pesquisa input{
+  color: black;
+
+  width: 90%;
+  outline:0;
+  border: 0;
+  border-radius: 0 8px 8px 0;
+}
+
+#body .barra-pesquisa img{
+  width: 30px;
+  background: #fff;
+  border-radius: 8px 0 0 8px;
+}
+
+#body .req{
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+
+  padding: 10px 0 10px 0;
+
+  max-width: 90%;
+
+  
+}
+
+#body .req a{
+  font-weight: 200;
+  font-size: 15px;
+
+  margin: 0 auto;
+
+  text-decoration: none;
+  color: white;
+}
+
+
+.foto_produtos{
+background-color: rgb(255, 255, 255);
+clear: both;
+margin-top: 0;
+}  
+ 
+img {
+vertical-align: top
+ 
+}
+ 
+ion-col{
+padding-left: 0;
+}
+
+article ul{
+  font-size: 0; /* elimina espaços entre as li */
+  background-color: #fff; /* fundo branco na ul, se for preciso */
+  height: 100%;
+
+}
+
+article ul li ion-card ion-card-header{
+  
+}
+
+article ul li ion-card ion-card-subtitle{
+  max-width: 50ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  text-transform: uppercase;
+}
+
+article ul li ion-card img{
+  width: 100%; /* ajusta a largura da imagem dentro da li */
+  display: block; /* convertendo para block elimina espaço natural abaixo da imagem */
+}
+
+article ul li ion-card a{
+  background-color: var(--ion-color-secondary);
+  color: black;
+  border-radius: 4px;
+  height: 15px;
+  width: 20px;
+
+  text-decoration: none;
+}
+
+article ul li ion-card{
+  
+}
+
+@media(min-width: 605px){
+  article ul li ion-card{
+  }
+}
+
+article ul, article ul li ion-card{ /* remove espaços e o bullet da ul e das li */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: black;
+}
+
+article ul li{
+  display: inline-block;
+  width: 50%; /* divide a largura por 4 */
+  box-sizing: border-box; /* restringe o padding à área da li */
+  text-align: center; /* centraliza o conteúdo */
+  padding: 15px; /* espaçamento interno entre o conteúdo e a borda da li */
+  font-size: 16px; /* ajusta o tamanho da fonte nas li com o tamanho padrão */
+  vertical-align: top; /* alinha as li no topo da linha */
+}
+
+@media (min-width:700px){
+  article ul li{
+    width: 25%;
+  }
+}

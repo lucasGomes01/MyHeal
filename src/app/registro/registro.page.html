@@ -1,8 +1,23 @@
 <ion-content [fullscreen]="true">
+  <div class="ion-text-center">
+    <img src="assets/img/cadastro1.jpg" alt="MyHeal">
+  </div>
 
-  <img src="assets/img/cadastro.jpg" alt="MyHeal">
+  <ion-item class="ion-text-center ion-button-light">
+    <ion-label>
+      NOVO USUÁRIO
+    </ion-label>
+  </ion-item>
+  <ion-item-divider color="secondary">
+    <ion-label>
+      Digite seus dados:
+    </ion-label>
+  </ion-item-divider>
 
-  
+  <!--
+    foi adicionado [(ngModel)]="userRegister.email nos inputs do gmail e senha,
+    no botão de salvar foi adicionado o (click)="register()" 
+  -->
 
 
 <form [formGroup]="formRegistro">
@@ -30,7 +45,7 @@
 
   <ion-item lines="none">
     <ion-label position="stacked">Data de Nascimento</ion-label>
-    <ion-datetime formControlName="dataNascimento" displayFormat="DD/MM/YYYY" placeholder="Selecione" cancelText="Cancelar" doneText="OK">
+    <ion-datetime formControlName="dataNascimento" displayFormat="DD/MM/YYYY" placeholder="Selecione" cancelText="Cancelar" doneText="OK" >
     </ion-datetime>
     <ng-container *ngFor="let erro of mensagens_validacao.dataNascimento">
       <span class="msg-erro" 
@@ -92,6 +107,7 @@
   <ion-item lines="none">
     <ion-label position="stacked">Confirmar</ion-label>
     <ion-input formControlName="confirmaSenha" type="password" placeholder="Confirme sua senha"></ion-input>
+
     <ng-container *ngFor="let erro of mensagens_validacao.confirmaSenha">
       <span class="msg-erro" 
       *ngIf="formRegistro.get('confirmaSenha').hasError(erro.tipo) && (formRegistro.get('confirmaSenha').dirty || formRegistro.get('confirmaSenha').touched)">
@@ -100,7 +116,7 @@
     </ng-container>
   </ion-item>
 
-  <ion-item  button class="ion-button-light ion-text-center">
+  <ion-item  button class="ion-button-light ion-text-center" (click)="salvarFormulario()">
     <ion-label>Salvar</ion-label>
   </ion-item>
 

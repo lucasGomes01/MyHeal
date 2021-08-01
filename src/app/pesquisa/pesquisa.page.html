@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ul>
+      <li>
+        <ion-icon name="arrow-back" routerLink="/carrinho"></ion-icon>
+      </li>
+      <li>
+        <span class="searching"><ion-searchbar routerLink="/pesquisa" (ionInput)="search($event)"></ion-searchbar></span>
+      </li>
+      <li>
+        <img src="../../assets/img/carrinho.jpg" routerLink="/carrinho" alt="Ver Carrinho">
+      </li>
+    </ul>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <article>
+    <ul>
+      <li *ngFor="let product of resultArr">
+        <ion-card button [routerLink]="['/produto', product.id]">
+          <ion-card-header>
+            <img [src]="product.picture1" alt="">
+            <ion-card-subtitle>{{product.name}}</ion-card-subtitle>
+            <ion-card-title>R${{product.price}}</ion-card-title>
+          </ion-card-header>
+          <!--<a href="carrinho">Adicionar ao Carrinho</a>-->
+        </ion-card>
+      </li>
+    </ul>
+  </article>
+</ion-content>

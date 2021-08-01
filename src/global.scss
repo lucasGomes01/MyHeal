@@ -35,3 +35,10 @@ ion-select {
     color: #ff0000;
     font-size: 11px;
 }
+
+.ion-button-light {
+    background: #fff;
+    color: var(--ion-color-secondary) !important;
+    font-weight: bold;
+    margin-top: 1px;
+}

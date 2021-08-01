@@ -1,4 +1,12 @@
+import { AuthService } from './../services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from 'src/app/services/product.service';
+import { ActivatedRoute } from '@angular/router';
+import { Product } from 'src/app/models/product';
+import { Subscription } from 'rxjs';
+import { Carrinho } from '../models/carrinho';
+import { CarrinhoService } from '../services/carrinho.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-produto',
@@ -8,19 +16,55 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class ProdutoPage implements OnInit {
+  private productId: string = null;
+  public carrinho: Carrinho = {};
+  public product: Product = {};
+  private productSubscription: Subscription;
 
-  public produto: any = [
-    {titulo: "Band-aid", 
-    preco: 5.99, 
-    img1: '1.jpg',
-    img2: '1.jpg',
-    img3: '1.jpg',
-    img4: ' ',
-    descricao: "Keep close to Nature's heart... and break clear away, once in awhile, and climb a mountain or spend a week in the woods. Wash your spirit clean."}
-  ];
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private productService: ProductService,
+    private carrinhoService: CarrinhoService,
+    private navCtrl: NavController,
+    private authService: AuthService
 
-  constructor() {}
+  ) { 
+    this.productId = this.activatedRoute.snapshot.params['id'];
+
+    if (this.productId) this.loadProduct();
+  }
 
   ngOnInit() {}
 
+  ngOnDestroy() {
+    if (this.productSubscription) this.productSubscription.unsubscribe();
+  }
+
+  loadProduct(){
+    this.productSubscription = this.productService.getProduct(this.productId).subscribe(data => {
+      this.product = data;
+    });
+  }
+
+  async addCarrinho() {
+    //await this.presentLoading();,
+
+    this.carrinho.UId =  (await this.authService.getAuth().currentUser).uid;
+    this.carrinho.IdProduto = this.productId;
+    //'e3P6V1n2bi4kCmBrrywe';
+    //this.authService.getAuth().currentUser.uid;
+
+
+      // this.product.createdAt = new Date().getTime();
+
+    try {
+      await this.carrinhoService.addCarrinho(this.carrinho);
+      //await this.loading.dismiss();
+
+      this.navCtrl.navigateBack('/carrinho');
+    } catch (error) {
+      //this.presentToast('Erro ao tentar salvar');
+      //this.loading.dismiss();
+    }
+  }
 }

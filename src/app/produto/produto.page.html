@@ -1,91 +1,76 @@
 <ion-header>
   <ion-toolbar color="secondary">
-    <ion-grid>
-      <ion-row>
-        <ion-col  size="1" class="ion-align-self-center">
-          <ion-icon name="chevron-back-outline"></ion-icon>
-        </ion-col>
-        <ion-col size="10" class="ion-align-self-center">
-          <ion-searchbar showCancelButton="never"></ion-searchbar>
-        </ion-col> 
-        <ion-col size="1" class="ion-align-self-center">
-          <div class="name-cart">
-            <img src="../../assets/img/carrinho.jpg" > 
-          </div> 
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+    <ul>
+      <li>
+        <ion-icon name="arrow-back" routerLink="/home"></ion-icon>
+      </li>
+      <li>
+        <span>Detalhes Produto</span>
+      </li>
+      <li>
+        <img src="../../assets/img/carrinho.jpg" routerLink="/carrinho" alt="Ver Carrinho">
+      </li>
+    </ul>
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
-
-  <li *ngFor="let item of produto" >
-
-    <ion-card>
-      <ion-slides pager="true">
-        <ion-slide>
-          <div class="slide">
-            <img src="../../assets/img/{{item.img1}}" > 
-          </div>
-        </ion-slide>
-
-        <ion-slide>
-          <div class="slide">
-            <img src="../../assets/img/{{item.img2}}" > 
-          </div>
-        </ion-slide>
-
-        <ion-slide>
-          <div class="slide">
-            <img src="../../assets/img/{{item.img3}}" > 
-          </div>
-        </ion-slide>
-
-        <ion-slide>
-          <div class="slide">
-            <img src="../../assets/img/{{item.img4}}" > 
-          </div>
-        </ion-slide>
-      </ion-slides>
-  
-      <ion-card-header>
-        <ion-card-title>{{item.titulo}}</ion-card-title>
-      </ion-card-header>
-      
-      <div class="holder">
-
-        <div class="retanguloPreco">
-            <div class="container5">
-              <p>{{item.preco}}</p>
+  <div class="body">
+    <div class="bloco1">
+        <ion-slides pager="true">
+          <ion-slide>
+            <div class="slide">
+              <img [src]="product.picture1">
             </div>
-        </div>
-    
-        <div>
-          <ion-button color="secondary">Carrinho</ion-button>
-        </div>
+          </ion-slide>
+          <ion-slide>
+            <div class="slide">
+              <img [src]="product.picture2">
+            </div>
+          </ion-slide>
+          <ion-slide>
+            <div class="slide">
+              <img [src]="product.picture3">
+            </div>
+          </ion-slide>
+          <ion-slide>
+            <div class="slide">
+              <img [src]="product.picture4">
+            </div>
+          </ion-slide>
+        </ion-slides>
 
-        <!--
-          <ion-item  color="secondary">
-            <ion-label>Carrinho</ion-label>
-            <ion-select  interface="action-sheet">
-              <ion-select-option value="1">1</ion-select-option>
-              <ion-select-option value="2">2</ion-select-option>
-              
-              <ion-select-option value="3">3</ion-select-option>
-              <ion-select-option value="4">4</ion-select-option>
-            </ion-select>
-          </ion-item>
-        -->
+        <div class="name"> {{product.name}} </div>
+    </div>
+    <div class="bloco2">
+      <div class="preco">
+        <span>{{ product.price | currency: 'BRL' }} <span class="vista">à vista </span><span class="desconto">(5% de
+            desconto)</span></span>
       </div>
 
-      <ion-card-content>
+      <div class="frete">
+        <ion-icon name="location"></ion-icon><span>Calcular Frete e Prazo</span>
+      </div>
 
-        <div id="linha-horizontal"></div>
-        <p align="justify">{{item.descricao}}</p>
-        
-      </ion-card-content>
-    </ion-card>
-  </li>
+      <div class="botao">
+        <button>Comprar</button>
+      </div>
+      <div class="botao1">
+        <button (click)="addCarrinho()">Adicionar ao carrinho  </button>
+      </div>
+    </div>
+      
+    <div class="bloco3">
+      <div class="idade">
+        <span class="idade-text">Idade indicativa:</span><span class="red">+{{product.indicativeAge}}</span>
+      </div>
+      <div class="descricao">
+        <span>Mais Detalhes</span>
+        <div class="texto-desc">
+          {{product.description}}
+        </div>
+      </div>
+    </div>
+  </div>
+
 </ion-content>

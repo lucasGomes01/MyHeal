@@ -11,7 +11,7 @@
 
     <ion-item lines="none">
       <ion-label position="stacked">E-mail</ion-label>
-      <ion-input formControlName="email" type="text" placeholder="Digite seu E-mail"></ion-input>
+      <ion-input formControlName="email" type="text" placeholder="Digite seu E-mail" [(ngModel)]="UserLogin.email"></ion-input>
       <ng-container *ngFor="let erro of mensagens_validacao.email">
         <span class="msg-erro" 
         *ngIf="formLogin.get('email').hasError(erro.tipo) && (formLogin.get('email').dirty || formLogin.get('email').touched)">
@@ -22,7 +22,7 @@
 
     <ion-item lines="none">
       <ion-label position="stacked">Senha</ion-label>
-      <ion-input formControlName="senha" type="password" placeholder="Escolha uma senha"></ion-input>
+      <ion-input formControlName="senha" type="password" placeholder="Escolha uma senha" [(ngModel)]="UserLogin.password"></ion-input>
       <ng-container *ngFor="let erro of mensagens_validacao.senha">
         <span class="msg-erro" 
         *ngIf="formLogin.get('senha').hasError(erro.tipo) && (formLogin.get('senha').dirty || formLogin.get('senha').touched)">
@@ -31,14 +31,14 @@
       </ng-container>
     </ion-item>
 
-    <ion-item lines="none">
+    <!-- <ion-item lines="none">
       <ion-label>Manter logado!</ion-label>
-      <ion-checkbox color="secondary" slot="start"></ion-checkbox>
-    </ion-item>
+      <ion-checkbox formControlName="manterLogado" color="secondary" slot="start"></ion-checkbox>
+    </ion-item> -->
   </ion-card>
 
   <ion-card>
-    <ion-button color="secondary" expand="block" (click)="login()">Entrar</ion-button>
+    <ion-button routerLink="/home" color="secondary" expand="block" (click)="login()">Entrar</ion-button>
     <ion-button routerLink="/registro" expand="block" fill="clear" >Criar nova conta</ion-button>
   </ion-card>
 </form>

@@ -1,7 +1,13 @@
+import { AuthService } from './../services/auth.service';
+import { User } from './../models/user';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-//import { ComparacaoValidator } from '../validators/comparacao-validator';
-//import { CpfValidator } from '../validators/cpf-validator';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { UsuariosService } from '../services/usuarios.service';
+import { ComparacaoValidator } from '../validators/comparacao-validator';
+import { CpfValidator } from '../validators/cpf-validator';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-registro',
@@ -11,6 +17,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class RegistroPage {
 
   public formRegistro: FormGroup;
+  
+
+  // no contrutor adicionado private ArmazenamentoService: ArmazenamentoService para o firebase
+  // o async register() foi removido e foi aproveitado o botão salvardados
 
   public mensagens_validacao = {
     nome: [
@@ -54,7 +64,15 @@ export class RegistroPage {
     ]
   };
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private usuariosService: UsuariosService,
+    public alertController: AlertController,
+    public router: Router,
+    private AuthService: AuthService,
+    private afs: AngularFirestore,
+
+    ) {
 
     this.formRegistro = formBuilder.group({
 
@@ -63,7 +81,7 @@ export class RegistroPage {
         Validators.required,
         Validators.minLength(11),
         Validators.maxLength(14),
-//        CpfValidator.cpfValido
+        CpfValidator.cpfValido
       ])],
       dataNascimento: ['', Validators.compose([Validators.required])],
       genero: ['', Validators.compose([Validators.required])],
@@ -73,8 +91,58 @@ export class RegistroPage {
       confirmaSenha: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
 
     }, {
-//      validator: ComparacaoValidator('senha', 'confirmaSenha')
+      validator: ComparacaoValidator('senha', 'confirmaSenha')
     });
   }
 
+  ngOnInit() {
+    this.usuariosService.buscarTodos();
+    console.log(this.usuariosService.listaUsuarios);
+    
+  }
+
+  public async salvarFormulario(){
+
+    if(this.formRegistro.valid){
+
+      let user  = new User();
+      user.name = this.formRegistro.value.nome;
+      user.cpf = this.formRegistro.value.cpf;
+      user.birthDate = new Date(this.formRegistro.value.dataNascimento);
+      user.genero = this.formRegistro.value.genero;
+      user.phoneNumber = this.formRegistro.value.celular;
+      user.email = this.formRegistro.value.email;
+      user.password = this.formRegistro.value.senha;
+
+      //envia para o fireBase
+      try{
+        const newUser = await this.AuthService.register(user);
+        const newUserObject = Object.assign({}, user);
+
+        delete newUserObject.password;
+
+        await this.afs.collection('Users').doc(newUser.user.uid).set(newUserObject);
+        
+        this.exibirAlerta('SUCESSO!', 'Usuário salvo com sucesso!');
+        this.router.navigateByUrl('/login');
+      } catch(error) {
+        this.exibirAlerta('ERRO!', 'Erro ao salvar o usuário!');
+        console.error(error)
+      }
+
+    }else{
+      this.exibirAlerta('ADVERTÊNCIA!', 'Formulário inválido<br/>Verifique os campos do seu formulário!');
+
+    }
+  }
+
+  async exibirAlerta(titulo: string, mensagem: string){
+    const alert = await this.alertController.create({
+      header: titulo,
+      message: mensagem,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
 }

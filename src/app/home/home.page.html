@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="0.9 rem" class="ion-align-self-center">
+          <ion-searchbar (ionInput)="search($event)"></ion-searchbar>
+        </ion-col>
+        <ion-col size="1" class="ion-align-self-center">
+          <div class="name-cart">
+            <a [routerLink]="['/carrinho']">
+
+              <img src="../../assets/img/car.jpg">
+            </a>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <div id="body">
+    <div class="foto_produtos">
+      <img src="../../assets/img/banner.jpg">
+    </div>
+    <div class="req">
+      <a>Todos os Remédios</a>
+    </div>
+
+    <article>
+      <ul>
+        <div *ngIf="resultArr.length == 0">
+          <li *ngFor="let product of products">
+            <!--<li *ngFor="let item of listaProdutos" > -->
+            <ion-card button [routerLink]="['/produto', product.id]">
+              <ion-card-header>
+                <img [src]="product.picture1" alt="">
+                <ion-card-subtitle>{{product.name}}</ion-card-subtitle>
+                <ion-card-title>R${{product.price}}</ion-card-title>
+              </ion-card-header>
+
+              
+              <!--<a href="carrinho">Adicionar ao Carrinho</a>-->
+            </ion-card>
+            <!--</li> -->
+          </li>
+        </div>
+
+        <div *ngIf="resultArr.length > 0">
+        <li *ngFor="let product of resultArr">
+          <ion-card button [routerLink]="['/produto', product.id]">
+            <ion-card-header>
+              <img [src]="product.picture1" alt="">
+              <ion-card-subtitle>{{product.name}}</ion-card-subtitle>
+              <ion-card-title>R${{product.price}}</ion-card-title>
+            </ion-card-header>
+            <!--<a href="carrinho">Adicionar ao Carrinho</a>-->
+          </ion-card>
+        </li>
+      </div>
+      </ul>
+    </article>
+
+  </div>
+  <!--body-->
+</ion-content>

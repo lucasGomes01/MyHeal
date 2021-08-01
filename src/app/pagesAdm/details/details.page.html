@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Adicionar Ou Editar Produto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="product.name" placeholder="Nome"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea type="text" [(ngModel)]="product.description" placeholder="Descrição"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-input type="number" [(ngModel)]="product.price" placeholder="Preço"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="product.picture1" placeholder="Primeira Foto"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="product.picture2" placeholder="Segunda Foto"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="product.picture3" placeholder="Terceira Foto"></ion-input>
+    </ion-item>     
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="product.picture4" placeholder="Quarta Foto"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="product.indicativeAge" placeholder="Idade Indicativa"></ion-input>
+    </ion-item>
+
+    
+
+    <ion-button (click)="openGalery(product.name)">Escolher foto</ion-button>
+    <!-- <ion-item>
+      <ion-label>Progresso do upload: {{ uploadPercent | async }}% </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label class="ion-tex-wrap">Url de dowload: {{ downloadUrl | async }} </ion-label>
+    </ion-item> -->
+  </ion-list>
+
+  <img [src]="downloadUrl | async" *ngIf="downloadUrl | async">
+
+  <ion-item>
+    <ion-avatar slot="start">
+      <img [src]="downloadUrl | async" *ngIf="downloadUrl | async">
+    </ion-avatar>
+    <ion-list>
+      <ion-list-header>
+        <ion-label>{{ uploadPercent | async }}% </ion-label>
+        <ion-item>
+          <ion-label class="ion-tex-wrap" placeholder="URl"> {{ downloadUrl | async }} </ion-label>
+        </ion-item>
+      </ion-list-header>
+      <ion-progress-bar value="0.0"></ion-progress-bar>
+    </ion-list>
+  
+  </ion-item>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button (click)="saveProduct()" expand="block">
+      Salvar produto
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
